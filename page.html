@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, .text, button {
+            background-color: black;
+            color: white;
+            font-family: monospace;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .main {
+            height: 90vh;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section {
+            width: 50%;
+            height: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .text {
+            width: 90%;
+            border: solid #444444;
+            padding: 10px;
+        }
+
+        textarea {
+            height: 50%;
+            border: none;
+        }
+
+        h1 {
+            font-size: 15px;
+            text-align: center;
+        }
+
+        .box_warning {
+            color: red;
+            margin-bottom: 0;
+        }
+
+        .box_output {
+            height: 90%;
+        }
+
+    </style>
+    <script>
+        function copy_to_clipboard() {
+            navigator.clipboard.writeText(document.getElementById("box_output").innerHTML);
+        }
+
+        function generate_output() {
+            var input = document.getElementById('box_input').value;
+            var output = input;
+            document.getElementById('box_output').innerHTML = output.replaceAll('\n', '</br>');
+        }
+    </script>
+</head>
+<body>
+<div>
+    <div class="main">
+        <div class="section" style="float:left;">
+            <h1>Input</h1>
+            <textarea class="text box_input" id="box_input" oninput="generate_output();"></textarea>
+            <h1>Warnings</h1>
+            <div class="text box_warning" id="box_warning">(Test Warning)</div>
+        </div>
+        <div class="section" style="float:right">
+            <h1>Output</h1>
+            <div class="text box_output" id="box_output">(Test Output)</div>
+            <button onclick="copy_to_clipboard();">Copy to Clipboard</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
